@@ -38,7 +38,7 @@ function printQuestionMarks(num) {
     return arr.toString();
   }
 
-const orm = {
+var orm = {
   selectAll: function(tableInput, cb) {
     let queryString = "SELECT * FROM " + tableInput + ";";
     connection.query(queryString, function(err, result) {
@@ -49,8 +49,8 @@ const orm = {
     });
   },
 
-  insertOne: function(tableInput, cols, vals, cb) {
-    let queryString = "INSERT INTO " + tableInput;
+  insertOne: function(table, cols, vals, cb) {
+    let queryString = "INSERT INTO " + table;
 
     queryString += " (";
     queryString += cols.toString();
@@ -69,8 +69,8 @@ const orm = {
     });
   },
 
-  updateOne: function(tableInput, objColVals, condition, cb) {
-    let queryString = "UPDATE " + tableInput;
+  updateOne: function(table, objColVals, condition, cb) {
+    let queryString = "UPDATE " + table;
 
     queryString += " SET ";
     queryString += objToSql(objColVals);
@@ -86,6 +86,6 @@ const orm = {
       cb(result);
     });
   }
-}
+};
 
 module.exports = orm;
